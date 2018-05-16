@@ -1,0 +1,16 @@
+
+{% extends "layout.html" %}
+
+{% block page_title %}Unauthorized{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="text-center">
+        <h1>401</h1>
+        <p>Damit du die Anmeldungen vornehmen kannst, musst du dich zuerst <a href="{{ url_for('public.home')}}">einloggen</a>. Hast du noch keinen Account dann
+            <a href="{{ url_for('public.register') }}">erstelle einen hier</a>.
+        </p>
+    </div>
+</div>
+{% endblock %}
+
