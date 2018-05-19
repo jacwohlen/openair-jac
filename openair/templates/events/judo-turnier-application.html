@@ -1,0 +1,41 @@
+
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-narrow">
+  <h1>Neue Anmeldung für das Judo Sunset Turnier</h1>
+
+    <form id="participantForm" class="form form-register" method="POST" action="" role="form">
+           {{ form.csrf_token }}
+            <div class="form-group">
+                {{form.lastname.label}}
+                {{form.lastname(placeholder="Name", class_="form-control")}}
+            </div>
+            <div class="form-group">
+                {{form.firstname.label}}
+                {{form.firstname(placeholder="Vorname", class_="form-control")}}
+            </div>
+            <div class="form-group">
+                {{form.sex.label}}
+                {{form.sex()}}
+            </div>
+            <div class="form-group">
+                {{form.birthday.label}}
+                {{form.birthday(placeholder="Geburtsdatum dd.mm.jjjj", class_="form-control")}}
+            </div>
+            <div class="form-group">
+                {{form.level.label}}
+                {{form.level(placeholder="Gurt", class_="form-control")}}
+            </div>
+            <div class="form-group">
+                {{form.weight.label}}
+                {{form.weight(placeholder="Gewicht [kg]", class_="form-control")}}
+            </div>
+            <div class="form-group">
+                {{form.remark.label}}
+                {{form.remark(placeholder="Bemerkung", class_="form-control")}}
+            </div>
+            <p><input class="btn btn-default btn-submit" type="submit" value="Anmelden"></p>
+    </form>
+</div>
+{% endblock %}
+

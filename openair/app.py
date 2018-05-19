@@ -2,7 +2,7 @@
 """The app module, containing the app factory function."""
 from flask import Flask, render_template
 
-from openair import commands, public, user, events
+from openair import commands, events, public, user
 from openair.extensions import bcrypt, cache, csrf_protect, db, debug_toolbar, login_manager, migrate, webpack
 from openair.settings import ProdConfig
 
@@ -38,7 +38,6 @@ def register_extensions(app):
 def register_blueprints(app):
     """Register Flask blueprints."""
     app.register_blueprint(public.views.blueprint)
-    app.register_blueprint(user.views.blueprint)
     app.register_blueprint(events.views.blueprint)
     return None
 

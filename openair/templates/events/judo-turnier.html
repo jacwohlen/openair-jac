@@ -4,34 +4,47 @@
 <div class="container-narrow">
   <h1>Meine Anmeldung für das Judo Sunset Turnier</h1>
 
-    <form id="participantForm" class="form form-register" method="POST" action="" role="form">
-           {{ form.csrf_token }}
-            <div class="form-group">
-                {{form.lastname.label}}
-                {{form.lastname(placeholder="Name", class_="form-control")}}
-            </div>
-            <div class="form-group">
-                {{form.firstname.label}}
-                {{form.firstname(placeholder="Vorname", class_="form-control")}}
-            </div>
-            <div class="form-group">
-                {{form.birthday.label}}
-                {{form.birthday(placeholder="Geburtsdatum", class_="form-control")}}
-            </div>
-            <div class="form-group">
-                {{form.level.label}}
-                {{form.level(placeholder="Gurt", class_="form-control")}}
-            </div>
-            <div class="form-group">
-                {{form.weight.label}}
-                {{form.weight(placeholder="Gewicht [kg]", class_="form-control")}}
-            </div>
-            <div class="form-group">
-                {{form.remark.label}}
-                {{form.remark(placeholder="Bemerkung", class_="form-control")}}
-            </div>
-            <p><input class="btn btn-default btn-submit" type="submit" value="Anmelden"></p>
-    </form>
+  <p>
+    <a href="/events/judo-turnier-application" class="btn btn-default btn-submi">Neue Anmeldung</a>
+  </p>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Vorname</th>
+      <th scope="col">Geschlecht</th>
+      <th scope="col">Jahrgang</th>
+      <th scope="col">Gurt</th>
+      <th scope="col">Gewicht</th>
+      <th scope="col">Bemerkung</th>
+      <th scope"col"></th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for participant in participants %}
+      <tr scope="row">
+        <td>{{ loop.index }}</td>
+        <td>{{participant.lastname}}</td>
+        <td>{{participant.firstname}}</td>
+        <td>{{participant.sex}}</td>
+        <td>{{participant.birthday.strftime('%Y')}}</td>
+        <td>{{participant.level}}</td>
+        <td>{{participant.weight}}</td>
+        <td>{{participant.remark}}</td>
+        <td>
+          <form id="participantDeleteForm" class="form" method="POST" action="{{ url_for('events.judo_turnier_remove', id=participant.id)}}" role="form">
+            {{ form.csrf_token }}
+            <button type="submit" class="btn btn-danger btn-xs">
+              <i class="glyphicon glyphicon-remove"></i>
+            </button>
+          </form>
+          </td>
+      </tr>
+      {% endfor %}
+    <tbody>
+  </table>
 </div>
 {% endblock %}
 

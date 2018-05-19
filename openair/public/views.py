@@ -48,8 +48,9 @@ def register():
     """Register new user."""
     form = RegisterForm(request.form)
     if form.validate_on_submit():
-        User.create(username=form.username.data, email=form.email.data, password=form.password.data, active=True)
-        flash('Danke für deine Registration. Du kannst dich jetzt einloggen.', 'success')
+        User.create(firstname=form.firstname.data, lastname=form.lastname.data,
+                    email=form.email.data, password=form.password.data, active=True)
+        flash('Danke für deine Registration. Du kannst dich jetzt einloggen und Teilnehmer erfassen', 'success')
         return redirect(url_for('public.home'))
     else:
         flash_errors(form)
