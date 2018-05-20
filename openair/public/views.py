@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Public section, including homepage and signup."""
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from flask_login import login_required, login_user, logout_user
+from flask_login import current_user, login_required, login_user, logout_user
 
 from openair.extensions import login_manager
 from openair.public.forms import LoginForm
@@ -21,6 +21,9 @@ def load_user(user_id):
 @blueprint.route('/', methods=['GET', 'POST'])
 def home():
     """Home page."""
+    if current_user.is_authenticated:
+        return redirect(url_for('events.events_overview'))
+
     form = LoginForm(request.form)
     # Handle logging in
     if request.method == 'POST':
@@ -49,7 +52,7 @@ def register():
     form = RegisterForm(request.form)
     if form.validate_on_submit():
         User.create(firstname=form.firstname.data, lastname=form.lastname.data,
-                    email=form.email.data, password=form.password.data, active=True)
+                    email=form.email.data, club=form.club.data, password=form.password.data, active=True)
         flash('Danke für deine Registration. Du kannst dich jetzt einloggen und Teilnehmer erfassen', 'success')
         return redirect(url_for('public.home'))
     else:

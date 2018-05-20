@@ -19,6 +19,10 @@
                 {{form.email(placeholder="Email", class_="form-control")}}
             </div>
             <div class="form-group">
+                {{form.club.label}}
+                {{form.club(placeholder="Club", class_="form-control")}}
+            </div>
+            <div class="form-group">
                 {{form.password.label}}
                 {{form.password(placeholder="Passwort", class_="form-control")}}
             </div>
@@ -26,7 +30,7 @@
                 {{form.confirm.label}}
                 {{form.confirm(placeholder="Passwort (wiederholen)", class_="form-control")}}
             </div>
-            <p><input class="btn btn-default btn-submit" type="submit" value="Registrieren"></p>
+            <p><input class="btn btn-default btn-danger" type="submit" value="Registrieren"></p>
     </form>
     <p><em>Bereits registriert?</em> Klicke <a href="/">here</a> für's Login.</p>
 </div>

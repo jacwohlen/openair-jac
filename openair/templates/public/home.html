@@ -2,31 +2,33 @@
 {% extends "layout.html" %}
 {% block content %}
 <!-- Main jumbotron for a primary marketing message or call to action -->
+  <h1 style="color: red;">Willkommen zur Anmeldung für das OpenAir Judo und Aikido Spektakel 2018</h1>
 <div class="jumbotron">
+  <p>Damit du die Anmeldungen vornehmen kannst, musst du dich zuerst oben einloggen. Hast du noch keinen Account dann
+  <a href="{{ url_for('public.register') }}">erstelle einen hier</a>.
+  </p>
 
-  <h1>Welcome to OpenAir 2018 Registration</h1>
-
-  <p>Bitte logge dich oben ein, um dich und deine Kameraden für das Spektakel anzumelden.</p>
 </div><!-- /.jumbotron -->
 
 <div class="body-content">
   <div class="row">
     <div class="col-lg-4">
-      <h2><i class="fa fa-code"></i> Judo Turnier</h2>
+      <img width="100%" src="{{ asset_url_for('img/header_judo_turnier.jpg') }}" />
+      <h2>Judo Turnier</h2>
       <p>Die Kinder der geladenen Judo-Vereinen können an diesem Plausch-Turnier teilnehmen.</p>
-      <p><a class="btn btn-default" href="/events/judo-turnier">Wählen</a></p>
+      <p><a class="btn btn-default btn-sm" target="blank" href="{{ asset_url_for('pdf/AUSSCH_JUDO_KINDER_TURNIER_OPENAIR_2018.pdf') }}"><span class="fa fa-file-pdf-o" aria-hidden="true"></span> Ausschreibung</a></p>
     </div>
     <div class="col-lg-4">
-      <h2><i class="fa fa-flask"></i> Aikido Stage</h2>
-      <p>Aikido Stage</p>
-      <p><a class="btn btn-default" href="#">Ausschreibung</a></p>
-      <p><a class="btn btn-default" href="/events/aikido-stage">Wählen</a></p>
+      <img width="100%" src="{{ asset_url_for('img/header_aikido_stage.jpg') }}" />
+      <h2>Aikido Stage</h2>
+      <p>Aikidokas aus der ganzen Schweiz treffen sich zu einem Meistertraining.</p>
+      <p><a class="btn btn-default btn-sm" target="blank" href="{{ asset_url_for('pdf/AUSSCH_AIKIDO_STAGE_OPENAIR_2018.pdf') }}"><span class="fa fa-file-pdf-o" aria-hidden="true"></span> Ausschreibung</a></p>
    </div>
     <div class="col-lg-4">
-      <h2><i class="fa fa-edit"></i> Judo Sunset Turnier</h2>
-      <p>Für die Erwachsenen Judokas des AJVs bieten wir dieses spektakuläre OpenAir-Training. </p>
-      <p><a class="btn btn-default" href="#">Ausschreibung</a></p>
-      <p><a class="btn btn-default" href="/events/judo-training">Wählen</a></p>
+      <img width="100%" src="{{ asset_url_for('img/header_judo_training.jpg') }}" />
+      <h2>Judo Training</h2>
+      <p>Für die erwachsenen Judokas des AJVs bieten wir dieses spektakuläre OpenAir-Training. </p>
+      <p><a class="btn btn-default btn-sm" target="blank" href="{{ asset_url_for('pdf/AUSSCH_JUDO_TRAINING_OPENAIR_2018.pdf') }}"><span class="fa fa-file-pdf-o" aria-hidden="true"></span> Ausschreibung</a></p>
     </div>
   </div><!-- /.row -->
 </div>

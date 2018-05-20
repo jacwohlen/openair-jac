@@ -1,8 +1,7 @@
 
 {% extends "layout.html" %}
 {% block content %}
-<div class="container-narrow">
-  <h1>Neue Anmeldung für das Judo Sunset Turnier</h1>
+  <h1>Judo Turnier - Neue Anmeldung</h1>
 
     <form id="participantForm" class="form form-register" method="POST" action="" role="form">
            {{ form.csrf_token }}
@@ -34,8 +33,7 @@
                 {{form.remark.label}}
                 {{form.remark(placeholder="Bemerkung", class_="form-control")}}
             </div>
-            <p><input class="btn btn-default btn-submit" type="submit" value="Anmelden"></p>
+            <p><input class="btn btn-default btn-danger" type="submit" value="Anmelden"></p>
     </form>
-</div>
 {% endblock %}
 

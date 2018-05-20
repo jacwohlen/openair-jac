@@ -47,7 +47,7 @@ def judo_turnier_application():
     form = ParticipantForm(request.form)
     if form.validate_on_submit():
         Participant.create(lastname=form.lastname.data, firstname=form.firstname.data, birthday=form.birthday.data,
-                           level=form.level.data, weight=form.weight.data, remark=form.remark.data, user=current_user)
+                           level=form.level.data, sex=form.sex.data, weight=form.weight.data, remark=form.remark.data, user=current_user)
         flash('Neuer Teilnehmer "{} {}" wurde erfolgreich erfasst.'.format(form.firstname.data,
               form.lastname.data), 'success')
         return redirect(url_for('events.judo_turnier'))
