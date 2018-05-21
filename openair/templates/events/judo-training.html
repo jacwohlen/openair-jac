@@ -1,0 +1,47 @@
+
+{% extends "layout.html" %}
+{% block content %}
+<!--<div class="container-narrow">-->
+<h1>Judo Training - Anmeldungen</h1>
+  <p>
+    <a href="/events/judo-training-application" class="btn btn-default btn-danger">Neue Anmeldung</a>
+  </p>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Vorname</th>
+      <th scope="col">Geschlecht</th>
+      <th scope="col">Jahrgang</th>
+      <th scope="col">Gurt</th>
+      <th scope="col">Bemerkung</th>
+      <th scope"col"></th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for participant in participants %}
+      <tr scope="row">
+        <td>{{ loop.index }}</td>
+        <td>{{participant.lastname}}</td>
+        <td>{{participant.firstname}}</td>
+        <td>{{participant.sex}}</td>
+        <td>{{participant.birthday}}</td>
+        <td>{{participant.level}}</td>
+        <td>{{participant.remark}}</td>
+        <td>
+          <form id="participantDeleteForm" class="form" method="POST" action="{{ url_for('events.judo_training_remove', id=participant.id)}}" role="form">
+            {{ form.csrf_token }}
+            <button type="submit" class="btn btn-danger btn-xs">
+              <i class="glyphicon glyphicon-remove"></i>
+            </button>
+          </form>
+          </td>
+      </tr>
+      {% endfor %}
+    <tbody>
+  </table>
+<!--</div>-->
+{% endblock %}
+
