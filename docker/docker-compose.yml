@@ -15,6 +15,7 @@ services:
     build:
       context: ..
       dockerfile: ./docker/webapp/Dockerfile
+    restart: always
     ports:
       - "80:5000"
     restart: always
