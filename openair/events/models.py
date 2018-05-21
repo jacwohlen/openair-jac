@@ -7,6 +7,7 @@ class Participant(SurrogatePK, Model):
     """A participant of an event."""
 
     __tablename__ = 'participants'
+    event = Column(db.String(80), unique=False, nullable=False)
     lastname = Column(db.String(80), unique=False, nullable=False)
     firstname = Column(db.String(80), unique=False, nullable=False)
     sex = Column(db.String(80), unique=False, nullable=True)
@@ -18,10 +19,11 @@ class Participant(SurrogatePK, Model):
     user_id = reference_col('users', nullable=True)
     user = relationship('User', backref='participants')
 
-    def __init__(self, lastname, firstname, birthday, level, weight, remark, **kwargs):
+    def __init__(self, event, lastname, firstname, birthday, level, weight, remark, **kwargs):
         """Create instance."""
-        db.Model.__init__(self, lastname=lastname, firstname=firstname, birthday=birthday,
-                          level=level, weight=weight, remark=remark, **kwargs)
+        db.Model.__init__(self, event=event, lastname=lastname, firstname=firstname,
+                          birthday=birthday, level=level, weight=weight,
+                          remark=remark, **kwargs)
 
     def __repr__(self):
         """Represent instance as a unique string."""

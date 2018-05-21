@@ -11,6 +11,10 @@ from openair.utils import flash_errors
 
 blueprint = Blueprint('events', __name__, url_prefix='/events', static_folder='../static')
 
+EVENT_JUDO_TURNIER = 'Judo Turnier'
+EVENT_AIKIDO_STAGE = 'Aikido Stage'
+EVENT_JUDO_TRAINING = 'Judo Training'
+
 
 @blueprint.route('/')
 @login_required
@@ -23,7 +27,8 @@ def events_overview():
 @login_required
 def judo_turnier():
     """Show participants for judo turnier."""
-    participants = Participant.query.join(User).filter(User.id == current_user.id).all()
+    participants = Participant.query.join(User).filter((User.id == current_user.id) and
+                                                       (Participant.event == EVENT_JUDO_TURNIER)).all()
 
     form = ParticipantDeleteForm(request.form)
     return render_template('events/judo-turnier.html', form=form, participants=participants)
@@ -40,14 +45,18 @@ def judo_turnier_remove(id):
         flash('id is {} ret={}'.format(id, ret), 'success')
     return redirect(url_for('events.judo_turnier'))
 
+
 @blueprint.route('/judo-turnier-application', methods=['GET', 'POST'])
 @login_required
 def judo_turnier_application():
     """Show application form to apply for event."""
     form = ParticipantForm(request.form)
     if form.validate_on_submit():
-        Participant.create(lastname=form.lastname.data, firstname=form.firstname.data, birthday=form.birthday.data,
-                           level=form.level.data, sex=form.sex.data, weight=form.weight.data, remark=form.remark.data, user=current_user)
+        Participant.create(event=EVENT_JUDO_TURNIER, lastname=form.lastname.data,
+                           firstname=form.firstname.data, birthday=form.birthday.data,
+                           level=form.level.data, sex=form.sex.data,
+                           weight=form.weight.data, remark=form.remark.data,
+                           user=current_user)
         flash('Neuer Teilnehmer "{} {}" wurde erfolgreich erfasst.'.format(form.firstname.data,
               form.lastname.data), 'success')
         return redirect(url_for('events.judo_turnier'))
