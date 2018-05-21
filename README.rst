@@ -40,6 +40,7 @@ database tables and perform the initial migration ::
     npm start
 
 
+
 Deployment
 ----------
 
@@ -52,6 +53,20 @@ To deploy::
 In your production environment, make sure the ``FLASK_DEBUG`` environment
 variable is unset or is set to ``0``, so that ``ProdConfig`` is used.
 
+Docker
+------
+
+docker-compose -f docker/docker-compose.yml build -d
+docker-compose -f docker/docker-compose.yml up -d
+
+# Setup Database (fresh)
+docker-compose -f docker/docker-compose.yml flask db upgrade
+
+# Otherwise load initial script from e.g. backup.sql
+copy sql script to docker/db/create.sql
+
+# Backup
+docker exec -it docker_web-db_1 pg_dump --username postgres --no-password > "backup_$(date +"%s").sql"
 
 Shell
 -----

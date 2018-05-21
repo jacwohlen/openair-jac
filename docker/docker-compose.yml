@@ -1,0 +1,20 @@
+version: '3'
+services:
+  web-db:
+    build: ./db
+    restart: always
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  web:
+    depends_on:
+      - web-db
+    build:
+      context: ..
+      dockerfile: ./docker/webapp/Dockerfile
+    ports:
+      - "80:5000"
+    restart: always
