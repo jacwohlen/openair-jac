@@ -33,7 +33,7 @@ class ParticipantFormJudoTurnier(FlaskForm):
                                Length(min=3, max=25)])
     sex = RadioField('Geschlecht', choices=[('m', 'Männlich'), ('w', 'Weiblich')])
     birthday = IntegerField('Jahrgang',
-                            validators=[NumberRange(min=1990, max=2015, message='Zwischen 1900 und 2015'),
+                            validators=[NumberRange(min=1900, max=2015, message='Muss zwischen 1900 und 2015 sein.'),
                                         DataRequired(message='Bitte angeben')])
     level = SelectField('Kyu/Dan',
                         choices=[('6. Kyu', '6. Kyu'),
@@ -80,7 +80,7 @@ class ParticipantFormJudoTraining(FlaskForm):
                                Length(min=3, max=25)])
     sex = RadioField('Geschlecht', choices=[('m', 'Männlich'), ('w', 'Weiblich')])
     birthday = IntegerField('Jahrgang',
-                            validators=[NumberRange(min=1990, max=2015, message='Zwischen 1900 und 2015'),
+                            validators=[NumberRange(min=1900, max=2015, message='Muss zwischen 1900 und 2015 sein.'),
                                         DataRequired(message='Bitte angeben')])
     level = SelectField('Kyu/Dan',
                         choices=[('6. Kyu', '6. Kyu'),
