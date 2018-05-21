@@ -8,6 +8,8 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    volumes:
+    - db-data:/var/lib/postgresql/data
 
   web:
     depends_on:
@@ -19,3 +21,7 @@ services:
     ports:
       - "80:5000"
     restart: always
+
+volumes:
+  db-data:
+
