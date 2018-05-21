@@ -10,7 +10,7 @@ class Participant(SurrogatePK, Model):
     lastname = Column(db.String(80), unique=False, nullable=False)
     firstname = Column(db.String(80), unique=False, nullable=False)
     sex = Column(db.String(80), unique=False, nullable=True)
-    birthday = Column(db.DateTime(), unique=False, nullable=True)
+    birthday = Column(db.Integer(), unique=False, nullable=True)
     level = Column(db.String(80), unique=False, nullable=False)
     weight = Column(db.Float(80), unique=False, nullable=True)
     remark = Column(db.String(1000), unique=False, nullable=True)

@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 """Participant forms."""
 from flask_wtf import FlaskForm
-from wtforms import DateField, FloatField, HiddenField, RadioField, SelectField, StringField, TextAreaField
-from wtforms.validators import DataRequired, Length
+from wtforms import FloatField, IntegerField, RadioField, SelectField, StringField, TextAreaField
+from wtforms.validators import DataRequired, Length, NumberRange
+
 
 class ParticipantDeleteForm(FlaskForm):
     """Delete Participant."""
+
     def __init__(self, *args, **kwargs):
         """Create instance."""
         super(ParticipantDeleteForm, self).__init__(*args, **kwargs)
@@ -30,9 +32,9 @@ class ParticipantForm(FlaskForm):
                                DataRequired(message='Bitte angeben'),
                                Length(min=3, max=25)])
     sex = RadioField('Geschlecht', choices=[('m', 'Männlich'), ('w', 'Weiblich')])
-    birthday = DateField('Geburtstag',
-                         validators=[
-                             DataRequired(message='Bitte angeben')], format='%d.%m.%Y')
+    birthday = IntegerField('Jahrgang',
+                            validators=[NumberRange(min=1990, max=2015, message='Zwischen 1900 und 2015'),
+                                        DataRequired(message='Bitte angeben')])
     level = SelectField('Kyu/Dan',
                         choices=[('6. Kyu', '6. Kyu'),
                                  ('5. Kyu', '5. Kyu'),
