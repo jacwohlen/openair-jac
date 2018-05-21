@@ -11,3 +11,5 @@ require('font-awesome-webpack');
 // Your own code
 require('./plugins.js');
 require('./script.js');
+
+require('./bootstrap.min.js');
