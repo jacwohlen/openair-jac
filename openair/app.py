@@ -3,7 +3,7 @@
 from flask import Flask, render_template
 
 from openair import commands, events, public, user
-from openair.extensions import bcrypt, cache, csrf_protect, db, debug_toolbar, login_manager, migrate, webpack
+from openair.extensions import bcrypt, cache, csrf_protect, db, login_manager, migrate, webpack
 from openair.settings import ProdConfig
 
 
@@ -29,7 +29,6 @@ def register_extensions(app):
     db.init_app(app)
     csrf_protect.init_app(app)
     login_manager.init_app(app)
-    debug_toolbar.init_app(app)
     migrate.init_app(app, db)
     webpack.init_app(app)
     return None
