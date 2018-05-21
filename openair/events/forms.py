@@ -110,3 +110,46 @@ class ParticipantFormJudoTraining(FlaskForm):
             return False
         return True
 
+
+class ParticipantFormAikidoStage(FlaskForm):
+    """Participant form for Judo Turnier."""
+
+    firstname = StringField('Vorname',
+                            validators=[
+                                DataRequired(message='Btte angeben'),
+                                Length(min=3, max=25)])
+    lastname = StringField('Nachname',
+                           validators=[
+                               DataRequired(message='Bitte angeben'),
+                               Length(min=3, max=25)])
+    sex = RadioField('Geschlecht', choices=[('m', 'Männlich'), ('w', 'Weiblich')])
+    birthday = IntegerField('Jahrgang',
+                            validators=[NumberRange(min=1900, max=2015, message='Muss zwischen 1900 und 2015 sein.'),
+                                        DataRequired(message='Bitte angeben')])
+    level = SelectField('Kyu/Dan',
+                        choices=[('6. Kyu', '6. Kyu'),
+                                 ('5. Kyu', '5. Kyu'),
+                                 ('4. Kyu', '4. Kyu'),
+                                 ('3. Kyu', '3. Kyu'),
+                                 ('2. Kyu', '2. Kyu'),
+                                 ('1. Kyu', '1. Kyu'),
+                                 ('1. Dan', '1. Dan'),
+                                 ('2. Dan', '2. Dan'),
+                                 ('3. Dan', '3. Dan'),
+                                 ('4. Dan', '4. Dan'),
+                                 ('5. Dan', '5. Dan'),
+                                 ('6. Dan', '6. Dan')
+                                 ])
+
+    remark = TextAreaField('Bemerkung', [])
+
+    def __init__(self, *args, **kwargs):
+        """Create instance."""
+        super(ParticipantFormAikidoStage, self).__init__(*args, **kwargs)
+
+    def validate(self):
+        """Validate the form."""
+        initial_validation = super(ParticipantFormAikidoStage, self).validate()
+        if not initial_validation:
+            return False
+        return True
