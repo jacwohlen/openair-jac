@@ -2,8 +2,10 @@
 OpenAir 2018 Registration
 ===============================
 
-A flasky app.
+Dedicated app to JAC Wohlen to run the registration for the OpenAir Event 2018
 
+Its everything other than lovely... and hardcoded. I might invest some time later to
+make it generic and usable for other purposes.
 
 Quickstart
 ----------
@@ -53,20 +55,22 @@ To deploy::
 In your production environment, make sure the ``FLASK_DEBUG`` environment
 variable is unset or is set to ``0``, so that ``ProdConfig`` is used.
 
-Docker
-------
+Deployment via Docker
+---------------------
 
-docker-compose -f docker/docker-compose.yml build -d
-docker-compose -f docker/docker-compose.yml up -d
+.. code-block:: bash
 
-# Setup Database (fresh)
-docker-compose -f docker/docker-compose.yml flask db upgrade
+    docker-compose -f docker/docker-compose.yml build -d
+    docker-compose -f docker/docker-compose.yml up -d
 
-# Otherwise load initial script from e.g. backup.sql
-copy sql script to docker/db/create.sql
+    # Setup Database (fresh)
+    docker-compose -f docker/docker-compose.yml flask db upgrade
 
-# Backup
-docker exec -it docker_web-db_1 pg_dump --username postgres --no-password > "backup_$(date +"%s").sql"
+    # Otherwise load initial script from e.g. backup.sql
+    copy sql script to docker/db/create.sql
+
+    # Backup
+    docker exec -it docker_web-db_1 pg_dump --username postgres --no-password > "backup_$(date +"%s").sql"
 
 Shell
 -----
