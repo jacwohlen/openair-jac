@@ -9,6 +9,7 @@ from openair.events.forms import ParticipantFormJudoTraining
 from openair.events.forms import ParticipantFormJudoTurnier
 from openair.events.models import Participant
 from openair.extensions import db
+from openair.user.models import User
 from openair.utils import flash_errors
 
 blueprint = Blueprint('events', __name__, url_prefix='/events', static_folder='../static')
@@ -16,6 +17,23 @@ blueprint = Blueprint('events', __name__, url_prefix='/events', static_folder='.
 EVENT_JUDO_TURNIER = 'Judo Turnier'
 EVENT_AIKIDO_STAGE = 'Aikido Stage'
 EVENT_JUDO_TRAINING = 'Judo Training'
+
+
+@blueprint.route('/admin')
+@login_required
+def admin():
+    """Show all registrations."""
+    if not current_user.is_admin:
+        return render_template('public/500.html')
+
+    judo_turnier_participants = Participant.query.filter_by(event=EVENT_JUDO_TURNIER).join(User).all()
+    judo_training_participants = Participant.query.filter_by(event=EVENT_JUDO_TRAINING).join(User).all()
+    aikido_stage_participants = Participant.query.filter_by(event=EVENT_AIKIDO_STAGE).join(User).all()
+
+    return render_template('events/admin.html',
+                           judo_turnier_participants=judo_turnier_participants,
+                           judo_training_participants=judo_training_participants,
+                           aikido_stage_participants=aikido_stage_participants)
 
 
 @blueprint.route('/')

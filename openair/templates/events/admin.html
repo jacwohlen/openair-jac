@@ -1,0 +1,99 @@
+
+{% extends "layout.html" %}
+{% block content %}
+
+<h1>Übersicht der Anmeldungen</h1>
+<div class="body-content">
+
+  <h3>Judo Turnier</h3>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Verantwortlich</th>
+      <th scope="col">Name</th>
+      <th scope="col">Vorname</th>
+      <th scope="col">Geschlecht</th>
+      <th scope="col">Jahrgang</th>
+      <th scope="col">Gurt</th>
+      <th scope="col">Bemerkung</th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for participant in judo_turnier_participants %}
+      <tr scope="row">
+        <td>{{ loop.index }}</td>
+        <td>{{participant.user.name}}@{{participant.user.club}}</td>
+        <td>{{participant.lastname}}</td>
+        <td>{{participant.firstname}}</td>
+        <td>{{participant.sex}}</td>
+        <td>{{participant.birthday}}</td>
+        <td>{{participant.level}}</td>
+        <td>{{participant.remark}}</td>
+      </tr>
+      {% endfor %}
+    <tbody>
+  </table>
+
+  <h3>Judo Training</h3>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Verantwortlich</th>
+      <th scope="col">Name</th>
+      <th scope="col">Vorname</th>
+      <th scope="col">Geschlecht</th>
+      <th scope="col">Jahrgang</th>
+      <th scope="col">Gurt</th>
+      <th scope="col">Bemerkung</th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for participant in judo_training_participants %}
+      <tr scope="row">
+        <td>{{ loop.index }}</td>
+        <td>{{participant.user.name}}@{{participant.user.club}}</td>
+        <td>{{participant.lastname}}</td>
+        <td>{{participant.firstname}}</td>
+        <td>{{participant.sex}}</td>
+        <td>{{participant.birthday}}</td>
+        <td>{{participant.level}}</td>
+        <td>{{participant.remark}}</td>
+      </tr>
+      {% endfor %}
+    <tbody>
+  </table>
+
+  <h3>Aikido Stage</h3>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Verantwortlich</th>
+      <th scope="col">Name</th>
+      <th scope="col">Vorname</th>
+      <th scope="col">Geschlecht</th>
+      <th scope="col">Jahrgang</th>
+      <th scope="col">Gurt</th>
+      <th scope="col">Bemerkung</th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for participant in aikido_stage_participants %}
+      <tr scope="row">
+        <td>{{ loop.index }}</td>
+        <td>{{participant.user.name}}@{{participant.user.club}}</td>
+        <td>{{participant.lastname}}</td>
+        <td>{{participant.firstname}}</td>
+        <td>{{participant.sex}}</td>
+        <td>{{participant.birthday}}</td>
+        <td>{{participant.level}}</td>
+        <td>{{participant.remark}}</td>
+      </tr>
+      {% endfor %}
+    <tbody>
+  </table>
+</div>
+{% endblock %}
+
